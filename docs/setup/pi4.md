@@ -13,8 +13,19 @@ It is highly recommended to read through the following documents before beginnin
 1. Download [Ubuntu® Server 20.04 64-bit](https://ubuntu.com/download/raspberry-pi) and write onto a microSD card.
 1. In the system-boot partition, edit usercfg.txt and add `dtoverlay=dwc2,dr_mode=peripheral`. For convenience, [here's a copy of this file](data/usercfg.txt).
 1. In the system-boot partition, edit cmdline.txt to add `modules-load=dwc2,g_ether` after `rootwait`. For convenience, [here's a copy of this file](data/cmdline.txt).
-1. In the system-boot partition, edit network-config to optionally add information about your Wi-Fi connection, and also add the following under `ethernets`
+1. In the system-boot partition, edit network-config to optionally add information about your Wi-Fi connection, 
 
+               wifis:
+                 wlan0:
+                   dhcp4: true
+                   optional: true
+                   access-points:
+                     "home network":
+                       password: "123456789"
+      Note: network name must be enclosed in quotation marks.
+      
+      and also add the following under `ethernets` For example:
+      
                 usb0:
                     dhcp4: false
                     optional: true
